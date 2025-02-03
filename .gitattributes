@@ -1,1 +1,3 @@
-.git
+# Forçar java como linguagem principal
+*.java linguist-detectable=true
+*.html linguist-detectable=false
