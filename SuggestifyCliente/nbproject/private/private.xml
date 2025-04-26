@@ -2,18 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/Album.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/Comentario.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/Comunidade.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/Musica.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/Tag.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/Usuario.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/Publicacao.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/Comum.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/Artista.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/view/TelaLogin.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Suggestify/desktopServidorBanco/Suggestify/código/SuggestifyClient/src/modelDominio/PublicacaoComum.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

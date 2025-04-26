@@ -51,7 +51,7 @@ public class TagDao {
         if (usuarioMusicaOuAlbum instanceof Usuario u) {
             o = (Usuario) usuarioMusicaOuAlbum;
             sql = "SELECT tag.* FROM tag"
-                    + " INNER JOIN tagsdousuario tgu ON tag.idTag = tgu.fkTag"
+                    + " INNER JOIN tagsDoUsuario tgu ON tag.idTag = tgu.fkTag"
                     + " INNER JOIN usuario u ON tgu.fkUsuario = u.idUsuario"
                     + " WHERE u.idUsuario = ?";
             idConteudo = u.getCodUsuario();
@@ -59,7 +59,7 @@ public class TagDao {
         } else if (usuarioMusicaOuAlbum instanceof Musica m) {
             o = (Musica) usuarioMusicaOuAlbum;
             sql = "select tag.* from tag"
-                    + " INNER JOIN tagsdemusica tgm ON tag.idTag = tgm.fkTag"
+                    + " INNER JOIN tagsDeMusica tgm ON tag.idTag = tgm.fkTag"
                     + " INNER JOIN musica m on tgm.fkMusica = m.idMusica"
                     + " WHERE m.idMusica = ?";
             idConteudo = m.getIdMusica();
@@ -67,7 +67,7 @@ public class TagDao {
         } else if (usuarioMusicaOuAlbum instanceof Album a) {
             o = (Album) usuarioMusicaOuAlbum;
             sql = "select tag.* from tag"
-                    + " INNER JOIN tagsdoalbum tga ON tag.idTag = tga.fkTag"
+                    + " INNER JOIN tagsDoAlbum tga ON tag.idTag = tga.fkTag"
                     + " INNER JOIN album a on tga.fkAlbum = a.idAlbum"
                     + " WHERE a.idAlbum = ?";
             idConteudo = a.getIdAlbum();
@@ -280,7 +280,7 @@ public class TagDao {
                     idTag = generatedKeys.getInt(1);
                     //PASSO 1.2:
                     generatedKeys.close();
-                    sql = " INSERT INTO generofilho(idGeneroFilho,fkTagGenero,fkGeneroPai)"
+                    sql = " INSERT INTO generoFilho(idGeneroFilho,fkTagGenero,fkGeneroPai)"
                             + " VALUES (null,?,?)";
                     stmtGeneroFilho = con.prepareStatement(sql);
                     stmtGeneroFilho.setInt(1, idTag);
@@ -297,7 +297,7 @@ public class TagDao {
             //se deu tudo certo até agora
             if (sucesso) {
                 //PASSO 3:
-                sql = "INSERT INTO sugestoesdetags(idTagSugerida,tipoConteudo,fkTag, fkConteudo)"
+                sql = "INSERT INTO sugestoesDeTags(idTagSugerida,tipoConteudo,fkTag, fkConteudo)"
                         + " VALUES(null,?,?,?)";
                 stmtSugestoes = con.prepareStatement(sql);
                 stmtSugestoes.setInt(1, tipo);
@@ -398,7 +398,7 @@ public class TagDao {
         try {
             con.setAutoCommit(false);
 
-            String sql = "DELETE FROM sugestoesdetags WHERE fkTag = ? AND fkConteudo = ? AND tipoConteudo = ?";
+            String sql = "DELETE FROM sugestoesDeTags WHERE fkTag = ? AND fkConteudo = ? AND tipoConteudo = ?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, tag.getIdTag());
             stmt.setInt(2, idDoConteudo);
@@ -452,7 +452,7 @@ public class TagDao {
             //con.setAutoCommit(true);
 
             String sql = "SELECT tag.idTag, tag.nome FROM tag"
-                    + " INNER JOIN sugestoesdetags sg ON sg.fkTag = tag.idTag"
+                    + " INNER JOIN sugestoesDeTags sg ON sg.fkTag = tag.idTag"
                     + " WHERE sg.fkConteudo = ? AND sg.tipoConteudo = ?";
 
             stmt = con.prepareStatement(sql);
@@ -584,17 +584,17 @@ public class TagDao {
             if (prontoParaInsert) {
                 switch (tipoConteudo) {
                     case 0: // COMUNIDADE
-                        sql = "INSERT INTO tagsdousuario(fkTag,fkUsuario)"
+                        sql = "INSERT INTO tagsDoUsuario(fkTag,fkUsuario)"
                                 + " VALUES(?,?)";
                         break;
 
                     case 1://MUSICA
-                        sql = "INSERT INTO tagsdemusica(fkTag,fkMusica)"
+                        sql = "INSERT INTO tagsDeMusica(fkTag,fkMusica)"
                                 + " VALUES(?,?)";
                         break;
 
                     case 2://ALBUM
-                        sql = "INSERT INTO tagsdoalbum(fkTag,fkAlbum)"
+                        sql = "INSERT INTO tagsDoAlbum(fkTag,fkAlbum)"
                                 + " VALUES(?,?)";
                         break;
 
@@ -612,7 +612,7 @@ public class TagDao {
                     //verificando se foi gerada uma nova key (insert bem sucedido)
                     if (generatedKeys.next()) {
                         //PASSO 3: DELETE NA TABELA DE SUGESTÕES
-                        sql = "DELETE FROM sugestoesdetags WHERE tipoConteudo = ? AND fkTag = ? AND fkConteudo = ?";
+                        sql = "DELETE FROM sugestoesDeTags WHERE tipoConteudo = ? AND fkTag = ? AND fkConteudo = ?";
                         stmtDelete = con.prepareStatement(sql);
                         stmtDelete.setInt(1, tipoConteudo);
                         stmtDelete.setInt(2, tag.getIdTag());
@@ -716,17 +716,17 @@ public class TagDao {
 
             switch (tipoConteudo) {
                 case 0: // COMUNIDADE ou USUARIO
-                    sql = "INSERT INTO tagsdousuario(fkTag,fkUsuario)"
+                    sql = "INSERT INTO tagsDoUsuario(fkTag,fkUsuario)"
                             + " VALUES(?,?)";
                     break;
 
                 case 1://MUSICA
-                    sql = "INSERT INTO tagsdemusica(fkTag,fkMusica)"
+                    sql = "INSERT INTO tagsDeMusica(fkTag,fkMusica)"
                             + " VALUES(?,?)";
                     break;
 
                 case 2://ALBUM
-                    sql = "INSERT INTO tagsdoalbum(fkTag,fkAlbum)"
+                    sql = "INSERT INTO tagsDoAlbum(fkTag,fkAlbum)"
                             + " VALUES(?,?)";
                     break;
 
@@ -818,15 +818,15 @@ public class TagDao {
 
             switch (tipoConteudo) {
                 case 0: // COMUNIDADE ou USUARIO
-                    sql = "DELETE FROM tagsdousuario WHERE fkTag = ? AND fkUsuario = ?";
+                    sql = "DELETE FROM tagsDoUsuario WHERE fkTag = ? AND fkUsuario = ?";
                     break;
 
                 case 1://MUSICA
-                    sql = "DELETE FROM tagsdemusica WHERE fkTag = ? AND fkMusica = ?";
+                    sql = "DELETE FROM tagsDeMusica WHERE fkTag = ? AND fkMusica = ?";
                     break;
 
                 case 2://ALBUM
-                    sql = "DELETE FROM tagsdoalbum WHERE fkTag = ? AND fkAlbum = ?";
+                    sql = "DELETE FROM tagsDoAlbum WHERE fkTag = ? AND fkAlbum = ?";
                     break;
 
                 default:
@@ -906,8 +906,8 @@ public class TagDao {
             String sql = "";
             //tag informada é generoFilho
             if (!generoPai) {
-                sql = "SELECT tag.* FROM generofilho gf"
-                        + " INNER JOIN generopai gp ON gf.fkGeneroPai = gp.idGeneroPai"
+                sql = "SELECT tag.* FROM generoFilho gf"
+                        + " INNER JOIN generoPai gp ON gf.fkGeneroPai = gp.idGeneroPai"
                         + " INNER JOIN tag ON gp.fkTag = tag.idTag"
                         + " WHERE gf.fkTagGenero = ?";
                 stmtGetPai = con.prepareStatement(sql);
@@ -926,9 +926,9 @@ public class TagDao {
             }
             
             if (podeGetFilhos) {
-                sql = "SELECT tag.* FROM generofilho gf"
+                sql = "SELECT tag.* FROM generoFilho gf"
                         + " INNER JOIN tag ON gf.fkTagGenero = tag.idTag"
-                        + " INNER JOIN generopai gp ON gf.fkGeneroPai = gp.idGeneroPai"
+                        + " INNER JOIN generoPai gp ON gf.fkGeneroPai = gp.idGeneroPai"
                         + " WHERE gp.fkTag = ?";
 
                 stmtGetFilhos = con.prepareStatement(sql);

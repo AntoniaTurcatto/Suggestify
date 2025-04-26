@@ -35,7 +35,7 @@ public class AlbumDao {
             ResultSet generatedKeys = stmtAlbum.getGeneratedKeys();
 
             if (generatedKeys.next()) {
-                sql = "INSERT INTO tagsdoalbum(idTagsDoAlbum,fkTag,fkAlbum)"
+                sql = "INSERT INTO tagsDoAlbum(idTagsDoAlbum,fkTag,fkAlbum)"
                         + " VALUES(null,?,?)";
                 stmtTagAlbum = con.prepareStatement(sql);
                 stmtTagAlbum.setInt(1, a.getListaTags().get(0).getIdTag());
@@ -118,7 +118,7 @@ public class AlbumDao {
                     + " tag.nome as nomeTag"
                     + " FROM album"
                     + " INNER JOIN usuario artista ON album.fkUsuario = artista.idUsuario"
-                    + " INNER JOIN tagsdoalbum tgAlbum ON album.idAlbum = fkAlbum"
+                    + " INNER JOIN tagsDoAlbum tgAlbum ON album.idAlbum = fkAlbum"
                     + " INNER JOIN tag ON tgAlbum.fkTag = idTag "
                     + " INNER JOIN musica ON musica.fkAlbum = album.idAlbum"
                     + " WHERE musica.idMusica = ?";
@@ -280,7 +280,7 @@ public class AlbumDao {
         try {
             String sql = consultaListaAlbunsComTag("WHERE album.idAlbum IN ("
                     + " SELECT fkAlbum"
-                    + " FROM tagsdoalbum"
+                    + " FROM tagsDoAlbum"
                     + " WHERE fkTag = ?"
                     + ")");
             stmt = con.prepareStatement(sql);
@@ -345,7 +345,7 @@ public class AlbumDao {
 
             String sql = consultaListaAlbunsComTag("WHERE album.idAlbum IN ("
                     + " SELECT DISTINCT fkAlbum"
-                    + " FROM tagsdoalbum"
+                    + " FROM tagsDoAlbum"
                     + " WHERE " + clausulaWhereComPlaceHolder
                     + ")");
             stmt = con.prepareStatement(sql);
@@ -403,7 +403,7 @@ public class AlbumDao {
                 + " tag.nome as nomeTag"
                 + " FROM album "
                 + " INNER JOIN usuario artista ON album.fkUsuario = artista.idUsuario"
-                + " INNER JOIN tagsdoalbum tgAlbum ON album.idAlbum = fkAlbum"
+                + " INNER JOIN tagsDoAlbum tgAlbum ON album.idAlbum = fkAlbum"
                 + " INNER JOIN tag ON tgAlbum.fkTag = idTag "
                 + where;
     }

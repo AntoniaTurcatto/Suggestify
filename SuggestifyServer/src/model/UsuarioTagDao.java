@@ -20,7 +20,7 @@ public class UsuarioTagDao {
         Usuario u = (Usuario)tagEUsuario[1];
         try {
             con.setAutoCommit(false);
-            String sql = "INSERT INTO tagsdousuario(idTagDoUsuario,fkTag,fkUsuario) VALUES(null,?,?)";
+            String sql = "INSERT INTO tagsDoUsuario(idTagDoUsuario,fkTag,fkUsuario) VALUES(null,?,?)";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, t.getIdTag());
             stmt.setInt(2, u.getCodUsuario());
@@ -53,7 +53,7 @@ public class UsuarioTagDao {
         Usuario u = (Usuario)tagEUsuario[1];
         try {
             con.setAutoCommit(false);
-            String sql = "DELETE FROM tagsdousuario WHERE fkTag = ? AND fkUsuario = ?";
+            String sql = "DELETE FROM tagsDoUsuario WHERE fkTag = ? AND fkUsuario = ?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, t.getIdTag());
             stmt.setInt(2, u.getCodUsuario());

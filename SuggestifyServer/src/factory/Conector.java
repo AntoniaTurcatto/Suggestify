@@ -10,7 +10,7 @@ public class Conector {
            String url = "jdbc:mysql://localhost:3306/";
            String banco = "suggestify";
            String usuario = "root";
-           String senha = "2275";
+           String senha = "";
            
            con = DriverManager.getConnection(url+banco,usuario,senha);
            return con;

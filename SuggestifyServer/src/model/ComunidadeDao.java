@@ -185,7 +185,7 @@ public class ComunidadeDao {
         try {
             String sql = "SELECT comunidade.*, artista.* from comunidade"
                     +" INNER JOIN usuario artista ON comunidade.fkUsuarioPrincipal = artista.idUsuario" 
-                    +" INNER JOIN usuariosdacomunidade uc ON comunidade.idComunidade = uc.fkComunidade" 
+                    +" INNER JOIN usuariosDaComunidade uc ON comunidade.idComunidade = uc.fkComunidade" 
                     +" INNER JOIN usuario comum ON uc.fkUsuario = comum.idUsuario" 
                     +" WHERE comum.idUsuario = ?";
                     
@@ -258,11 +258,11 @@ public class ComunidadeDao {
             
             String sql = "SELECT DISTINCT comunidade.*, artista.* from comunidade"
                     +" INNER JOIN usuario artista ON comunidade.fkUsuarioPrincipal = artista.idUsuario" 
-                    +" LEFT JOIN usuariosdacomunidade uc ON comunidade.idComunidade = uc.fkComunidade" 
+                    +" LEFT JOIN usuariosDaComunidade uc ON comunidade.idComunidade = uc.fkComunidade" 
                     +" LEFT JOIN usuario comum ON uc.fkUsuario = comum.idUsuario" 
                     +" WHERE artista.idUsuario IN ("
                     +" SELECT DISTINCT fkUsuario"
-                    +" FROM tagsdousuario"
+                    +" FROM tagsDoUsuario"
                     +" WHERE " + clausulaWhereComPlaceHolder
                     +")";
                     

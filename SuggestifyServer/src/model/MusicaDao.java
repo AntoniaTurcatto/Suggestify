@@ -47,7 +47,7 @@ public class MusicaDao {
                         resKeysMusica = stmtInsertMusica.getGeneratedKeys();
                         if (resKeysMusica.next()) {
                             int idMusica = resKeysMusica.getInt(1);
-                            sql = "INSERT INTO tagsdemusica(idTagDeMusica,fkTag,fkMusica)"
+                            sql = "INSERT INTO tagsDeMusica(idTagDeMusica,fkTag,fkMusica)"
                                     + " VALUES(null,?,?)";
                             stmtAssociaTag = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                             stmtAssociaTag.setInt(1, m.getListaTags().get(0).getIdTag());
@@ -251,7 +251,7 @@ public class MusicaDao {
         try {
             String sql = consultaMusicaComTagWhere("WHERE musica.idMusica IN ("
                     + " SELECT fkMusica"
-                    + " FROM tagsdemusica"
+                    + " FROM tagsDeMusica"
                     + " WHERE fkTag = ?"
                     + ")");
             stmt = con.prepareStatement(sql);
@@ -492,7 +492,7 @@ public class MusicaDao {
             //O distinct garante que será retornado apenas um id de musica, não pegando a mesma musica muitas vezes
             String sql = consultaMusicaComTagWhere("WHERE musica.idMusica IN ("
                     + " SELECT DISTINCT fkMusica"
-                    + " FROM tagsdemusica"
+                    + " FROM tagsDeMusica"
                     + " WHERE "+clausulaWhereComPlaceHolder
                     + ")");
             stmt = con.prepareStatement(sql);
@@ -670,7 +670,7 @@ public class MusicaDao {
                 + " feat.senha as senhaFeat,"
                 + " feat.nomeArtistico as nomeArtisticoFeat"
                 + " FROM musica "
-                + " INNER JOIN tagsdemusica tgMus ON musica.idMusica = tgMus.fkMusica"
+                + " INNER JOIN tagsDeMusica tgMus ON musica.idMusica = tgMus.fkMusica"
                 + " INNER JOIN tag ON tgMus.fkTag = tag.idTag"
                 + " INNER JOIN album ON musica.fkAlbum = album.idAlbum"
                 + " INNER JOIN usuario artistaPrincipal ON album.fkUsuario = artistaPrincipal.idUsuario"

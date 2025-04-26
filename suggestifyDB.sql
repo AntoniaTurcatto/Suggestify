@@ -326,7 +326,7 @@ insert into tag(idTag,nome) values
 (null, 'MODERNISMO');
 
 
-insert into generofilho(idGeneroFilho,fkTagGenero,fkGeneroPai) values
+insert into generoFilho(idGeneroFilho,fkTagGenero,fkGeneroPai) values
 /*subgeneros folk */
 (null, 9,1),
 (null, 10,1),

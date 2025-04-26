@@ -20,7 +20,7 @@ public class UsuarioComunidadeDao {
         boolean res;
         try {
             con.setAutoCommit(false);
-            String sql = "insert into usuariosdacomunidade(idUsuariosDaComunidade,fkUsuario,fkComunidade)"
+            String sql = "insert into usuariosDaComunidade(idUsuariosDaComunidade,fkUsuario,fkComunidade)"
                 +" values(null,?,?)";
             
             stmt = con.prepareStatement(sql);
@@ -54,7 +54,7 @@ public class UsuarioComunidadeDao {
         boolean res;
         try {
             con.setAutoCommit(false);
-            String sql = " DELETE FROM usuariosdacomunidade WHERE fkUsuario = ? AND fkComunidade = ?";
+            String sql = " DELETE FROM usuariosDaComunidade WHERE fkUsuario = ? AND fkComunidade = ?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, c.getCodUsuario());
             stmt.setInt(2, comu.getIdComunidade());
@@ -87,7 +87,7 @@ public class UsuarioComunidadeDao {
         ArrayList<Comunidade> listaComunidades = new ArrayList();
         try {
             String sql ="SELECT comunidade.*, artista.* FROM comunidade" 
-                    +" INNER JOIN usuariosdacomunidade uc ON comunidade.idComunidade = uc.fkComunidade" 
+                    +" INNER JOIN usuariosDaComunidade uc ON comunidade.idComunidade = uc.fkComunidade" 
                     +" INNER JOIN usuario artista on comunidade.fkUsuarioPrincipal = artista.idUsuario" 
                     +" WHERE uc.fkUsuario = ?";
             stmt = con.prepareStatement(sql);

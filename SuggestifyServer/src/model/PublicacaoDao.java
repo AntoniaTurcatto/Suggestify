@@ -440,7 +440,7 @@ public class PublicacaoDao {
             con.setAutoCommit(false);
             String sql;
             if (p instanceof PublicacaoComum) {
-                sql = "SELECT * FROM publicacaoqueusuariocurtiu"
+                sql = "SELECT * FROM publicacaoQueUsuarioCurtiu"
                         + " WHERE fkPublicacao=? AND fkUsuario = ?";
             } else { //comentario
                 sql = "SELECT * FROM comentarioqueusuariocurtiu"
@@ -491,7 +491,7 @@ public class PublicacaoDao {
             String sql;
 
             if (p instanceof PublicacaoComum) {
-                sql = "INSERT INTO publicacaoqueusuariocurtiu(idPublicacaoQueUsuarioCurtiu,fkUsuario,fkPublicacao)"
+                sql = "INSERT INTO publicacaoQueUsuarioCurtiu(idPublicacaoQueUsuarioCurtiu,fkUsuario,fkPublicacao)"
                         + " VALUES(null,?,?)";
             } else { // é comentario
                 sql = "INSERT INTO comentarioqueusuariocurtiu(idComentarioQueUsuarioCurtiu,fkUsuario,fkComentario)"
@@ -539,7 +539,7 @@ public class PublicacaoDao {
             String sql;
 
             if (p instanceof PublicacaoComum) {
-                sql = "DELETE FROM publicacaoqueusuariocurtiu WHERE fkPublicacao = ? AND fkUsuario = ?";
+                sql = "DELETE FROM publicacaoQueUsuarioCurtiu WHERE fkPublicacao = ? AND fkUsuario = ?";
             } else {// é comentario
                 sql = "DELETE FROM comentarioqueusuariocurtiu WHERE fkComentario = ? AND fkUsuario = ?";
             }
